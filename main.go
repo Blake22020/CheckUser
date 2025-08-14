@@ -16,6 +16,7 @@ type User struct {
 
 func main() {
 	var name string
+	fmt.Print("Enter the name: ")
 	fmt.Scanln(&name)
 
 	resp, err := http.Get("https://api.github.com/users/" + name)
@@ -33,5 +34,5 @@ func main() {
 	if err := json.Unmarshal(body, &user); err != nil {
 		panic(err)
 	}
-	fmt.Printf("%s\n%s\nПубличных репозиториев: %d\nПодписчиков:%d\n", user.Name, user.Bio, user.Repos, user.Followers)
+	fmt.Printf("%s\n%s\nPublic repos: %d\nFollowers:%d\n", user.Name, user.Bio, user.Repos, user.Followers)
 }
